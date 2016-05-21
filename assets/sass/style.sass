@@ -1,0 +1,497 @@
+// the shape of things to come
+
+@import "compass"
+@import "compass/reset"
+@import "compass/css3"
+
+@import url(https://fonts.googleapis.com/css?family=Karma:400,300,500,600,700)
+@import url(https://fonts.googleapis.com/css?family=Fira+Sans:700,500)
+
+// ----------------------------------------------------------------------------
+// Mixins and Globals
+// ----------------------------------------------------------------------------
+
+//  Hide Stuff
+=hide-text
+  display : inline-block
+  overflow : hidden
+  text-indent : -1000em
+=hide
+  display : none
+  visibility: none
+
+// Box Reset
+=reset
+  @include box-sizing(border-box)
+  margin: 0
+  padding: 0
+  border: 0
+
+// ----------------------------------------------------------------------------
+// Basic classes
+// ----------------------------------------------------------------------------
+
+body
+  font-family: 'Karma', serif
+  font-size : 76%
+
+iframe
+  +reset
+a img
+  display : block
+
+figure
+  img
+    display: block
+    width: 100%
+    height: auto
+
+// ----------------------------------------------------------------------------
+// Colours, Links and Buttons
+// ----------------------------------------------------------------------------
+
+$light-yellow: #ffffdd
+$light-blue: #e0f7ff
+
+body
+  background: #f9f9f9
+a
+  text-decoration : none
+  position : relative
+  &:hover
+    text-decoration : none
+
+// ----------------------------------------------------------------------------
+// Typography
+// ----------------------------------------------------------------------------
+
+=oxygenBold
+  font-family: 'Fira Sans', sans-serif
+  font-weight: 700
+=oxygenRegular
+  font-family: 'Fira Sans', sans-serif
+  font-weight: 500
+=paragraph-text
+  font-family: 'Karma', serif
+  font-weight: 300
+
+h1,h2,h3,h4,h5,big,blockquote
+  @include box-sizing(border-box)
+  +reset
+  position : relative
+p, ul, ol, figure
+  @include box-sizing(border-box)
+  +reset
+  position : relative
+
+input
+  @include box-sizing(border-box)
+  -webkit-appearance: none
+  -moz-appearance: none
+
+.article
+  ::selection
+    background: $light-yellow
+  a
+    text-decoration: underline
+    font-weight: 900
+    color: #222
+    &:hover
+      background: $light-blue
+  h1,h2,h3,h4,h5,big
+    margin-bottom: 30px
+    line-height: 1.2em
+    +oxygenBold
+  h1
+    font-size: 3.6em
+    @media only screen and (max-width : 680px)
+      font-size: 2.5em
+  h2
+    font-size: 3.2em
+    @media only screen and (max-width : 680px)
+      font-size: 2.2em
+  h3
+    font-size: 2.8em
+    @media only screen and (max-width : 680px)
+      font-size: 2em
+  h4
+    font-size: 2.6em
+    @media only screen and (max-width : 680px)
+      font-size: 1.8em
+  h5
+    font-size: 2.4em
+    @media only screen and (max-width : 680px)
+      font-size: 1.6em
+  h6
+    font-size: 2.2em
+    @media only screen and (max-width : 680px)
+      font-size: 1.4em
+  p, ol, ul, input, text-area
+    +paragraph-text
+    font-weight: 300
+    font-size: 1.8em
+    line-height: 1.8em
+    margin-bottom: 30px
+    color: #444
+    @media only screen and (max-width : 680px)
+      font-size: 1.2em
+  ul
+    list-style: disc
+    padding-left: 20px
+    li
+      margin-bottom: 5px
+      font-weight: 400
+      ul
+        list-style: circle
+  ol
+    list-style: decimal
+    padding-left: 25px
+    li
+      margin-bottom: 5px
+      font-weight: 400
+      ol
+        list-style: lower-alpha
+  strong
+    font-weight: 900
+  em
+    font-style: italic
+  figcaption
+    font-weight: 300
+    font-size: 1.4em
+    line-height: 1.4em
+  blockquote
+    +paragraph-text
+    font-size: 1.8em
+    line-height: 1.6em
+    font-weight: 600
+    @media only screen and (max-width : 680px)
+      font-size: 1.8em
+
+// ----------------------------------------------------------------------------
+// Structure
+// ----------------------------------------------------------------------------
+
+$max-width : 640px
+
+=block-big
+  @include box-sizing(border-box)
+  @include transform(translate3d(-100px,0,0))
+  @include transform-style(preserve-3d)
+  display: block
+  width: $max-width + 200px
+  @media only screen and (max-width : 1080px)
+    @include transform(translate3d(-50px,0,0))
+    width: $max-width + 100px
+  @media only screen and (max-width : 880px)
+    @include transform(translate3d(0,0,0))
+    width: $max-width
+  @media only screen and (max-width : 680px)
+    width: 100%
+
+=block-bigger
+  @include box-sizing(border-box)
+  @include transform(translate3d(-200px,0,0))
+  @include transform-style(preserve-3d)
+  display: block
+  width: $max-width + 400px
+  @media only screen and (max-width : 1080px)
+    @include transform(translate3d(-100px,0,0))
+    width: $max-width + 200px
+  @media only screen and (max-width : 880px)
+    @include transform(translate3d(0,0,0))
+    width: $max-width
+  @media only screen and (max-width : 680px)
+    width: 100%
+.player
+  position: relative
+  padding-bottom: $max-width * 0.74
+  @media only screen and (max-width : 680px)
+    padding-bottom: 100% * 0.74
+  iframe
+    +reset
+    display: block
+    width: 100%!important
+    height: 100%!important
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+
+=centered
+  @include box-sizing(border-box)
+  margin : auto
+  position : relative
+  max-width : $max-width
+  text-align : left
+
+// Ratio Keeper
+=ratio
+  position: relative
+  width: 100%
+  display: block
+  &.fourByThree
+    padding-bottom: 75%
+  &.sixteenByNine
+    padding-bottom: 56.25%
+  img, iframe, div
+    +reset
+    display: block
+    width: 100%
+    height: 100%
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+
+=hover-caption
+  position: relative
+  overflow: hidden
+  figcaption
+    @include transition(all .2s ease-in-out)
+    @include background-image(linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.8)))
+    position: absolute
+    bottom: -10px
+    left: 0
+    right: 0
+    padding: 20px
+    opacity: 0
+    color: white
+    z-index: 2
+  &:hover
+    figcaption
+      opacity: 1
+      bottom: 0
+
+// ----------------------------------------------------------------------------
+// Design Patterns
+// ----------------------------------------------------------------------------
+
+header.global, footer.global, section.content
+  @include box-sizing(border-box)
+  display: block
+  position: relative
+
+header.global
+  position: absolute
+  display: block
+  overflow: auto
+  top: 0
+  left: 0
+  right: 0
+  width: 100%
+  min-height: 80px
+  background: rgba(0,0,0,0.6)
+  z-index: 1000
+  &.sticky
+    position: fixed
+  &.fadeOut
+    @include animation(fadeOut 250 normal forwards)
+  &.slideUp
+    @include animation(slideUp 1s normal forwards)
+  &.slideDown
+    @include animation(slideDown 1s normal forwards)
+  @media only screen and (max-width : 800px)
+    text-align: center
+  nav
+    @include box-sizing(border-box)
+    display: block
+    position: relative
+    z-index: 1000
+    h1
+      display: none
+    ol
+      display: block
+      margin: 20px
+      +oxygenBold
+      li
+        display: inline-block
+        line-height: 1.4em
+        a
+          margin: 5px
+          color: white
+          text-transform: uppercase
+    .menu_nav
+      float: left
+      padding-top: 10px
+      a
+        @include transition(all .1s ease)
+        color: white
+        &:hover
+          border-bottom: 3px solid white
+      @media only screen and (max-width : 800px)
+        float: none
+        margin-bottom: 5px
+        padding-bottom: 15px
+        border-bottom: 1px solid #eee
+    .menu_social
+      float: right
+      @media only screen and (max-width : 800px)
+        float: none
+      .social_icn
+        +hide-text
+        width: 25px
+        height: 25px
+        background: image-url('sprite_icons.png') center top no-repeat
+        background-size: 24px auto
+        @include transition(all .2s ease-in-out)
+        @include transform-style(preserve-3d)
+        &:hover
+          @include transform(translateY(-5px))
+        &.twitter
+          background-position: center -49px
+        &.facebook
+          background-position: center 0px
+        &.instagram
+          background-position: center -98px
+        &.linkedin
+          background-position: center -147px
+
+.content
+  header
+    position: relative
+    min-height: 100vh
+    width: 100%
+    margin-bottom: 120px
+    overflow: hidden
+    background: image-url('../content/DSCF8033.jpg') no-repeat center center
+    background-size: cover
+    background-attachment: fixed
+    div
+      position: absolute
+      bottom: 0
+      left: 0
+      right: 0
+      padding: 10vh 10vw
+      @include background-image(linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.8)))
+      color: white
+      h2
+        max-width: $max-width * 2
+        text-transform: uppercase
+      p
+        max-width: $max-width
+        color: white
+  article
+    margin: 30px auto
+    max-width: $max-width
+    @media only screen and (max-width : 680px)
+      margin: 30px 20px
+    .player
+      +block-big
+      margin-bottom: 60px
+    .block
+      margin-bottom: 80px
+    .image-big
+      +block-big
+      +hover-caption
+      margin-bottom: 30px
+    .quote-small
+      position: relative
+      float: left
+      width: 50%
+      margin-top: 10px
+      margin-left: -20%
+      margin-bottom: 10px
+      @media only screen and (max-width : 1080px)
+        margin-left: -10%
+      @media only screen and (max-width : 880px)
+        width: 100%
+        margin: 30px 0
+        float: none
+    .quote-big
+      position: relative
+      margin: 60px -30%
+      font-size: 2.5em
+      @media only screen and (max-width : 1080px)
+        margin: 60px -15%
+      @media only screen and (max-width : 880px)
+        width: 100%
+        margin: 30px 0
+    .gallery
+      +block-bigger
+      margin-bottom: 60px
+      figure
+        @include box-sizing(border-box)
+        +hover-caption
+        margin: 1%
+        display: inline-block
+        &:nth-of-type(2), &:nth-of-type(5), &:nth-of-type(8), &:nth-of-type(11)
+          width: 47.8%
+        &:nth-of-type(3), &:nth-of-type(6), &:nth-of-type(9), &:nth-of-type(12)
+          width: 47.8%
+        @media only screen and (max-width : 880px)
+          margin: 10px 0
+          &:nth-of-type(2), &:nth-of-type(5), &:nth-of-type(8), &:nth-of-type(11)
+            width: 48.5%
+            margin-right: 5px
+          &:nth-of-type(3), &:nth-of-type(6), &:nth-of-type(9), &:nth-of-type(12)
+            width: 48.5%
+            margin-left: 5px
+        @media only screen and (max-width : 520px)
+          margin: 10px 0
+          &:nth-of-type(2), &:nth-of-type(5), &:nth-of-type(8), &:nth-of-type(11)
+            width: 100%
+            margin-right: 0
+          &:nth-of-type(3), &:nth-of-type(6), &:nth-of-type(9), &:nth-of-type(12)
+            width: 100%
+            margin-left: 0
+
+#modal-share
+  @include box-shadow(0 0 3px rgba(0,0,0,0.5))
+  position: absolute
+  display: none
+  background: black
+  z-index: 10
+  padding: 10px
+  border-radius: 0 5px 5px 5px
+  max-width: 100px
+  max-height: 100px
+  a
+    +hide-text
+    margin: 0
+    width: 25px
+    height: 25px
+    background: image-url('sprite_icons.png') center top no-repeat
+    background-size: 23px
+    line-height: 1em
+    @include transition(all .2s ease-in-out)
+    @include transform-style(preserve-3d)
+    &:hover
+      @include transform(translateY(-3px))
+    &.facebook
+      background-position: 1px 0
+    &.twitter
+      background-position: 1px -47px
+
+
+@include keyframes(fadeOut)
+  0%
+    opacity: 1
+    position: fixed
+  100%
+    opacity: 0
+    position: fixed
+
+@include keyframes(slideUp)
+  0%
+    opacity: 1
+    top: 0px
+  100%
+    opacity: 0
+    top: -200px
+
+@include keyframes(slideDown)
+  0%
+    opacity: 0
+    top: -200px
+  100%
+    opacity: 1
+    top: 0px
+
+
+.ios
+  .home
+    .content
+      header
+        background-attachment: inherit
