@@ -1,8 +1,6 @@
 // the shape of things to come
 
 @import "compass"
-@import "compass/reset"
-@import "compass/css3"
 
 @import url(https://fonts.googleapis.com/css?family=Karma:400,300,500,600,700)
 @import url(https://fonts.googleapis.com/css?family=Fira+Sans:700,500)
@@ -89,7 +87,7 @@ input
   -webkit-appearance: none
   -moz-appearance: none
 
-.article
+article
   ::selection
     background: $light-yellow
   a
@@ -202,6 +200,8 @@ $max-width : 640px
     width: $max-width
   @media only screen and (max-width : 680px)
     width: 100%
+
+
 .player
   position: relative
   padding-bottom: $max-width * 0.74
@@ -268,110 +268,13 @@ $max-width : 640px
 // Design Patterns
 // ----------------------------------------------------------------------------
 
-header.global, footer.global, section.content
+section.content
   @include box-sizing(border-box)
   display: block
   position: relative
 
-header.global
-  position: absolute
-  display: block
-  overflow: auto
-  top: 0
-  left: 0
-  right: 0
-  width: 100%
-  min-height: 80px
-  background: rgba(0,0,0,0.6)
-  z-index: 1000
-  &.sticky
-    position: fixed
-  &.fadeOut
-    @include animation(fadeOut 250 normal forwards)
-  &.slideUp
-    @include animation(slideUp 1s normal forwards)
-  &.slideDown
-    @include animation(slideDown 1s normal forwards)
-  @media only screen and (max-width : 800px)
-    text-align: center
-  nav
-    @include box-sizing(border-box)
-    display: block
-    position: relative
-    z-index: 1000
-    h1
-      display: none
-    ol
-      display: block
-      margin: 20px
-      +oxygenBold
-      li
-        display: inline-block
-        line-height: 1.4em
-        a
-          margin: 5px
-          color: white
-          text-transform: uppercase
-    .menu_nav
-      float: left
-      padding-top: 10px
-      a
-        @include transition(all .1s ease)
-        color: white
-        &:hover
-          border-bottom: 3px solid white
-      @media only screen and (max-width : 800px)
-        float: none
-        margin-bottom: 5px
-        padding-bottom: 15px
-        border-bottom: 1px solid #eee
-    .menu_social
-      float: right
-      @media only screen and (max-width : 800px)
-        float: none
-      .social_icn
-        +hide-text
-        width: 25px
-        height: 25px
-        background: image-url('sprite_icons.png') center top no-repeat
-        background-size: 24px auto
-        @include transition(all .2s ease-in-out)
-        @include transform-style(preserve-3d)
-        &:hover
-          @include transform(translateY(-5px))
-        &.twitter
-          background-position: center -49px
-        &.facebook
-          background-position: center 0px
-        &.instagram
-          background-position: center -98px
-        &.linkedin
-          background-position: center -147px
 
-.content
-  header
-    position: relative
-    min-height: 100vh
-    width: 100%
-    margin-bottom: 120px
-    overflow: hidden
-    background: image-url('../content/DSCF8033.jpg') no-repeat center center
-    background-size: cover
-    background-attachment: fixed
-    div
-      position: absolute
-      bottom: 0
-      left: 0
-      right: 0
-      padding: 10vh 10vw
-      @include background-image(linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.8)))
-      color: white
-      h2
-        max-width: $max-width * 2
-        text-transform: uppercase
-      p
-        max-width: $max-width
-        color: white
+body
   article
     margin: 30px auto
     max-width: $max-width
@@ -379,9 +282,7 @@ header.global
       margin: 30px 20px
     .player
       +block-big
-      margin-bottom: 60px
-    .block
-      margin-bottom: 80px
+      margin-bottom: 60pxs
     .image-big
       +block-big
       +hover-caption
@@ -436,62 +337,3 @@ header.global
           &:nth-of-type(3), &:nth-of-type(6), &:nth-of-type(9), &:nth-of-type(12)
             width: 100%
             margin-left: 0
-
-#modal-share
-  @include box-shadow(0 0 3px rgba(0,0,0,0.5))
-  position: absolute
-  display: none
-  background: black
-  z-index: 10
-  padding: 10px
-  border-radius: 0 5px 5px 5px
-  max-width: 100px
-  max-height: 100px
-  a
-    +hide-text
-    margin: 0
-    width: 25px
-    height: 25px
-    background: image-url('sprite_icons.png') center top no-repeat
-    background-size: 23px
-    line-height: 1em
-    @include transition(all .2s ease-in-out)
-    @include transform-style(preserve-3d)
-    &:hover
-      @include transform(translateY(-3px))
-    &.facebook
-      background-position: 1px 0
-    &.twitter
-      background-position: 1px -47px
-
-
-@include keyframes(fadeOut)
-  0%
-    opacity: 1
-    position: fixed
-  100%
-    opacity: 0
-    position: fixed
-
-@include keyframes(slideUp)
-  0%
-    opacity: 1
-    top: 0px
-  100%
-    opacity: 0
-    top: -200px
-
-@include keyframes(slideDown)
-  0%
-    opacity: 0
-    top: -200px
-  100%
-    opacity: 1
-    top: 0px
-
-
-.ios
-  .home
-    .content
-      header
-        background-attachment: inherit
