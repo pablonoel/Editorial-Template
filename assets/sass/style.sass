@@ -63,10 +63,10 @@ a
 // Typography
 // ----------------------------------------------------------------------------
 
-=oxygenBold
+=firaBold
   font-family: 'Fira Sans', sans-serif
   font-weight: 700
-=oxygenRegular
+=firaRegular
   font-family: 'Fira Sans', sans-serif
   font-weight: 500
 =paragraph-text
@@ -97,15 +97,23 @@ article
     &:hover
       background: $light-blue
   h1,h2,h3,h4,h5,big
-    margin-bottom: 30px
+    margin: 80px auto 30px auto
     line-height: 1.2em
-    +oxygenBold
+    +firaBold
   h1
     font-size: 3.6em
+    +firaRegular
+    &:nth-of-type(1)
+      margin: 0 auto
+      text-transform: uppercase
     @media only screen and (max-width : 680px)
       font-size: 2.5em
   h2
     font-size: 3.2em
+    &:nth-of-type(1)
+      margin: 0 auto 30px auto
+      font-size: 2.2em
+      text-transform: uppercase
     @media only screen and (max-width : 680px)
       font-size: 2.2em
   h3
@@ -128,8 +136,8 @@ article
     +paragraph-text
     font-weight: 300
     font-size: 1.8em
-    line-height: 1.8em
-    margin-bottom: 30px
+    line-height: 1.6em
+    margin: 0 20px 20px 20px
     color: #444
     @media only screen and (max-width : 680px)
       font-size: 1.2em
@@ -153,6 +161,8 @@ article
     font-weight: 900
   em
     font-style: italic
+  figure
+    margin: 30px auto
   figcaption
     font-weight: 300
     font-size: 1.4em
@@ -169,7 +179,7 @@ article
 // Structure
 // ----------------------------------------------------------------------------
 
-$max-width : 640px
+$max-width : 720px
 
 =block-big
   @include box-sizing(border-box)
